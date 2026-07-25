@@ -1,0 +1,8 @@
+{
+    "type": "weather",
+    "city": "dhaka",
+    "temperature": "27",
+    "humidity": "85",
+    "condition": "Partly Cloudy ",
+    "time": "25-07-2026 11:52 PM"
+}
