@@ -5,8 +5,29 @@ import datetime
 
 def current_weather():
     city = input("Enter city name: ")
-    url = "https://wttr.in/Dhaka?format=j1"
-    pass
+    # city = "dhaka"
+    url = "https://wttr.in/"
+
+    url = url + city + "?format=j1"
+    response = requests.get(url)
+
+    data = response.json()
+    # print(data.keys())
+    # print(data["current_condition"])
+    temperature = data["current_condition"][0]["temp_C"]
+    humidity = data["current_condition"][0]["humidity"]
+    wind_speed = data["current_condition"][0]["windspeedKmph"]
+    condition = data["current_condition"][0]["weatherDesc"][0]["value"]
+
+    now = datetime.datetime.now()
+    time = now.strftime("%d-%m-%Y %I:%M %p")
+
+    print("------ Weather Report ------")
+    print(f"City: {city.title()}\nTemperature: {temperature}\u00b0C\nHumidity: {humidity}%\nWind Speed: {wind_speed}Km/h\nCondition: {condition}\nFetched At: {time}")
+    print("-" * 30)
+
+
+current_weather()
 
 
 def currency_exchange_rate():
@@ -34,7 +55,7 @@ def currency_exchange_rate():
 
 
 
-currency_exchange_rate()
+# currency_exchange_rate()
 
 
 def save_result():
