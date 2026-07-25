@@ -1,16 +1,40 @@
 # Imports
 import json, requests
+import datetime
 
 
 def current_weather():
     city = input("Enter city name: ")
+    url = "https://wttr.in/Dhaka?format=j1"
     pass
 
 
 def currency_exchange_rate():
     base_currency = input("Base Currency: ")
     target_currency = input("Target Currency: ")
-    pass
+
+    url = "https://open.er-api.com/v6/latest/"
+
+    url = url + base_currency.upper()
+
+    response = requests.get(url)
+    data = response.json()
+    print(data.keys())
+
+    target_rate = data["rates"][target_currency.upper()]
+    print(target_rate)
+    print(type(target_rate))
+
+    print(f"1 {base_currency.upper()} = {target_rate} {target_currency.upper()}")
+
+    now = datetime.datetime.now()
+    time = now.strftime("%d-%m-%Y %I:%M %p")
+
+    print(f"\nFetched At:\n{time}")
+
+
+
+currency_exchange_rate()
 
 
 def save_result():
@@ -48,4 +72,4 @@ def main():
 
 
 
-main()
+# main()
